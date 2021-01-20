@@ -10,7 +10,7 @@ time.sleep(1.5)
 
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
-# wind direction is the direction it is coming from.
+# wind direction is either from left or right
 # distance is either close or far.
 data = ["rabbit", "left", "close"]
 
@@ -27,6 +27,15 @@ while True:
         data.append("rifle")
         break
 
-# Go hunting
-print(f"You jump in your car and put the {data[3]} on the seat")
+# Travel to trail
+print(f"You jump in your car and put the {data[3]} on the seat.")
 time.sleep(1.5)
+print("Soon you are at the trail head and you park.")
+time.sleep(1.5)
+print("You walk down the trail and come to a fork.")
+time.sleep(1.5)
+print("The trail splits and goes hard left and hard right.")
+time.sleep(1.5)
+print(f"You feel the wind on the {data[1]} side of your face.\")
+time.sleep(1.5)
+
