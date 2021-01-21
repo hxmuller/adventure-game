@@ -32,6 +32,23 @@ def travel_text(data):
     print_slow("The trail splits and goes hard left and hard right.")
     print_slow(f"You feel the wind on the {data[1]} side of your face.\n")
 
+def select_trail(data):
+    choice = input("Enter L to go left\n"
+                   "Enter R to go right\n"
+                   "(Please enter L or R): ").lower()
+    if choice == "l":
+        if data[1] == "left":
+            data.append("against_wind")
+        if data[1] == "right":
+            data.append("with_wind")
+    if choice == "r":
+        if data[1] == "left":
+            data.append("with_wind")
+        if data[1] == "right":
+            data.append("against_wind")
+    else:
+        select_trail(data)
+
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
 # wind direction is either from left or right
@@ -41,21 +58,5 @@ intro_text()
 print_slow("You open the gun safe and see your pistol and rifle.")
 select_weapon(data)
 travel_text(data)
-
 print_slow("Which way will you go?")
-while True:
-    choice = input("Enter L to go left\n"
-                   "Enter R to go right\n"
-                   "(Please enter L or R): ").lower()
-    if choice == "l":
-        if data[1] == "left":
-            print_slow("Wind in face")
-        if data[1] == "right":
-            print_slow("Wind on back")
-        break
-    if choice == "r":
-        if data[1] == "left":
-            print_slow("Wind on back")
-        if data[2] == "right":
-            print_slow("Wind in face")
-        break
+select_trail(data)
