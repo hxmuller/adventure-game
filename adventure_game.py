@@ -1,13 +1,18 @@
 import time
 
+# Slow message printing for humans
+# str - String to be printed
 def print_slow(str):
     print(str)
     time.sleep(1.5)
 
-# Intro text
-print_slow("\nYour stomach starts to grumble.")
-print_slow("You walk over to the freezer, open it and look in.")
-print_slow("The freezer is empty, time to hunt!\n")
+# Print intro text
+def intro():
+    print_slow("\nYour stomach starts to grumble.")
+    print_slow("You walk over to the freezer, open it and look in.")
+    print_slow("The freezer is empty, time to hunt!\n")
+
+intro()
 
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
@@ -39,7 +44,7 @@ print_slow("Which way will you go?")
 while True:
     choice = input("Enter L to go left\n"
                    "Enter R to go right\n"
-                   "(Please enter L or R: ").lower()
+                   "(Please enter L or R): ").lower()
     if choice == "l":
         if data[1] == "left":
             print_slow("Wind in face")
