@@ -12,26 +12,26 @@ def intro():
     print_slow("You walk over to the freezer, open it and look in.")
     print_slow("The freezer is empty, time to hunt!\n")
 
-intro()
+# Player selects weapon
+def select_weapon(data):
+    choice = input("Enter P to get the pistol\n"
+                   "Enter R to get the rifle\n"
+                   "(Please enter P or R): ").lower()
+    if choice == "p":
+        data.append("pistol")
+    if choice == "r":
+        data.append("rifle")
+    else:
+        select_weapon(data)
 
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
 # wind direction is either from left or right
 # distance is either close or far.
 data = ["rabbit", "left", "close"]
-
-# Player chooses weapon
+intro()
 print_slow("You open the gun safe and see your pistol and rifle.")
-while True:
-    choice = input("Enter P to get the pistol\n"
-                   "Enter R to get the rifle\n"
-                   "(Please enter P or R): ").lower()
-    if choice == "p":
-        data.append("pistol")
-        break
-    if choice == "r":
-        data.append("rifle")
-        break
+select_weapon(data)
 
 # Travel to trail
 print_slow(f"\nYou jump in your car and put the {data[3]} on the seat.")
