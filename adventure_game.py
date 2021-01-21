@@ -7,7 +7,7 @@ def print_slow(str):
     time.sleep(1.5)
 
 # Print intro text
-def intro():
+def intro_text():
     print_slow("\nYour stomach starts to grumble.")
     print_slow("You walk over to the freezer, open it and look in.")
     print_slow("The freezer is empty, time to hunt!\n")
@@ -24,21 +24,23 @@ def select_weapon(data):
     else:
         select_weapon(data)
 
+# Print travel text
+def travel_text(data):
+    print_slow(f"\nYou jump in your car and put the {data[3]} on the seat.")
+    print_slow("Soon you are at the trail head and you park.")
+    print_slow("You walk down the trail and come to a fork.")
+    print_slow("The trail splits and goes hard left and hard right.")
+    print_slow(f"You feel the wind on the {data[1]} side of your face.\n")
+
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
 # wind direction is either from left or right
 # distance is either close or far.
 data = ["rabbit", "left", "close"]
-intro()
+intro_text()
 print_slow("You open the gun safe and see your pistol and rifle.")
 select_weapon(data)
-
-# Travel to trail
-print_slow(f"\nYou jump in your car and put the {data[3]} on the seat.")
-print_slow("Soon you are at the trail head and you park.")
-print_slow("You walk down the trail and come to a fork.")
-print_slow("The trail splits and goes hard left and hard right.")
-print_slow(f"You feel the wind on the {data[1]} side of your face.\n")
+travel_text(data)
 
 print_slow("Which way will you go?")
 while True:
