@@ -1,12 +1,13 @@
 import time
 
+def print_slow(str):
+    print(str)
+    time.sleep(1.5)
+
 # Intro text
-print("\nYour stomach starts to grumble.")
-time.sleep(1.5)
-print("You walk over to the freezer, open it and look in.")
-time.sleep(1.5)
-print("The freezer is empty, time to hunt!\n")
-time.sleep(1.5)
+print_slow("\nYour stomach starts to grumble.")
+print_slow("You walk over to the freezer, open it and look in.")
+print_slow("The freezer is empty, time to hunt!\n")
 
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
@@ -15,8 +16,7 @@ time.sleep(1.5)
 data = ["rabbit", "left", "close"]
 
 # Player chooses weapon
-print("You open the gun safe and see your pistol and rifle.")
-time.sleep(1.5)
+print_slow("You open the gun safe and see your pistol and rifle.")
 while True:
     choice = input("Enter P to get the pistol\n"
                    "Enter R to get the rifle\n"
@@ -29,32 +29,26 @@ while True:
         break
 
 # Travel to trail
-print(f"\nYou jump in your car and put the {data[3]} on the seat.")
-time.sleep(1.5)
-print("Soon you are at the trail head and you park.")
-time.sleep(1.5)
-print("You walk down the trail and come to a fork.")
-time.sleep(1.5)
-print("The trail splits and goes hard left and hard right.")
-time.sleep(1.5)
-print(f"You feel the wind on the {data[1]} side of your face.\n")
-time.sleep(1.5)
+print_slow(f"\nYou jump in your car and put the {data[3]} on the seat.")
+print_slow("Soon you are at the trail head and you park.")
+print_slow("You walk down the trail and come to a fork.")
+print_slow("The trail splits and goes hard left and hard right.")
+print_slow(f"You feel the wind on the {data[1]} side of your face.\n")
 
-print("Which way will you go?")
-time.sleep(1.5)
+print_slow("Which way will you go?")
 while True:
     choice = input("Enter L to go left\n"
                    "Enter R to go right\n"
                    "(Please enter L or R: ").lower()
     if choice == "l":
         if data[1] == "left":
-            print("Wind in face")
+            print_slow("Wind in face")
         if data[1] == "right":
-            print("Wind on back")
+            print_slow("Wind on back")
         break
     if choice == "r":
         if data[1] == "left":
-            print("Wind on back")
+            print_slow("Wind on back")
         if data[2] == "right":
-            print("Wind in face")
+            print_slow("Wind in face")
         break
