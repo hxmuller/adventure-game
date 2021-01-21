@@ -39,6 +39,7 @@ def select_trail(data):
     if choice == "l":
         if data[1] == "left":
             data.append("against_wind")
+            hunt(data)
         if data[1] == "right":
             data.append("with_wind")
     if choice == "r":
@@ -48,6 +49,14 @@ def select_trail(data):
             data.append("against_wind")
     else:
         select_trail(data)
+
+def hunt(data):
+    print_slow("You walk down the trail a bit and see a clearing.")
+    if data[2] == "close":
+        print_slow(f"As you approach the clearing, you see a {data[0]} a few yards away!")
+        print_slow(f"You raise your {data[3]}, carefully aim, and squeeze the trigger.")
+        print_slow(f"The {data[0]} drops to the ground. Success you have dinner!")
+        # TODO: play_again()
 
 # Data to be generated randomly
 # Animals are {rabbit, deer, bull moose, black bear}
