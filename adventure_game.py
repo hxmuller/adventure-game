@@ -14,12 +14,12 @@ def intro_text():
 
 # Player selects weapon
 def select_weapon(data):
-    wchoice = input("Enter P to get the pistol\n"
+    choice = input("Enter P to get the pistol\n"
                    "Enter R to get the rifle\n"
                    "(Please enter P or R): ").lower()
-    if wchoice == "p":
+    if choice == "p":
         data.append("pistol")
-    elif wchoice == "r":
+    elif choice == "r":
         data.append("rifle")
     else:
         select_weapon(data)
@@ -42,11 +42,14 @@ def select_trail(data):
             hunt(data)
         if data[1] == "right":
             data.append("with_wind")
+            hunt(data)
     elif choice == "r":
         if data[1] == "left":
             data.append("with_wind")
+            hunt(data)
         if data[1] == "right":
             data.append("against_wind")
+            hunt(data)
     else:
         select_trail(data)
 
@@ -55,8 +58,13 @@ def hunt(data):
     if data[2] == "close":
         print_slow(f"As you approach the clearing, you see a {data[0]} a few yards away!")
         print_slow(f"You raise your {data[3]}, carefully aim, and squeeze the trigger.")
-        print_slow(f"The {data[0]} drops to the ground. Success you have dinner!\n")
-        select_again()
+        if data[4] == "against_wind":
+            print_slow(f"The {data[0]} drops to the ground. Success you have dinner!\n")
+            select_again()
+        elif data[4] == "with_wind":
+            print_slow(f"The {data[0]} catches your scent, and runs away!")
+            select_again()
+
 
 def play_game():
     # Data to be generated randomly
