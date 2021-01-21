@@ -66,32 +66,37 @@ def hunt(data):
                 "squeeze the trigger.")
     if data[2] == "close":
         if data[4] == "against_wind":
-            print_slow(f"The {data[0]} drops to the ground. "
-                        "Success you have dinner!\n")
-            select_again()
+            success(data)
         elif data[4] == "with_wind":
-            print_slow(f"The {data[0]} catches your scent, and "
-                        "runs away!\n")
-            select_again()
+            fail(data)
     elif data[2] == "far":
         # Coin flip for pistol shot at a distance.
         if data[4] == "against_wind" and data[3] == "pistol":
-            if random.randint(0,1) == 1:
-                print_slow(f"The {data[0]} drops to the ground. "
-                            "Success you have dinner!\n")
-                select_again()
-            else:
-                print_slow("The shot misses and startles the "
-                            f"{data[0]}! It runs away.\n")
-                select_again()
+            far_pistol(data)
         elif data[4] == "against_wind" and data[3] != "pistol":
-            print_slow(f"The {data[0]} drops to the ground. "
-                        "Success you have dinner!\n")
-            select_again()
+            success(data)
         elif data[4] == "with_wind":
-            print_slow(f"The {data[0]} catches your scent, and "
-                        "runs away!\n")
-            select_again()
+            fail(data)
+
+def success(data):
+    print_slow(f"The {data[0]} drops to the ground. "
+                "Success you have dinner!\n")
+    select_again()
+
+def fail(data):
+    print_slow(f"The {data[0]} catches your scent, and "
+                "runs away!")
+    print_slow("Fail, no dinner tonight!\n")
+    select_again()
+
+def far_pistol(data):
+    if random.randint(0,1) == 1:
+        success(data)
+    else:
+        print_slow("The shot misses and startles the "
+                   f"{data[0]}! It runs away.")
+        print_slow("Fail, no dinner tonight!\n")
+        select_again()
 
 def print_range(data):
     if data[2] == "close":
@@ -102,7 +107,7 @@ def print_range(data):
                f"{prey_range} meters away!")
     if data[2] == "far" and data[3] == "pistol":
         print_slow("You will need a little luck at this range "
-                   " with the pistol!")
+                   "with the pistol!")
 
 def play_game():
     # Data to be generated randomly:
