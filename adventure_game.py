@@ -51,21 +51,24 @@ def select_trail(data):
         select_trail(data)
 
 def hunt(data):
-    print_slow("You walk down the trail a bit and see a clearing.")
+    print_slow("\nYou walk down the trail a bit and see a clearing.")
     if data[2] == "close":
         print_slow(f"As you approach the clearing, you see a {data[0]} a few yards away!")
         print_slow(f"You raise your {data[3]}, carefully aim, and squeeze the trigger.")
         print_slow(f"The {data[0]} drops to the ground. Success you have dinner!")
         # TODO: play_again()
 
-# Data to be generated randomly
-# Animals are {rabbit, deer, bull moose, black bear}
-# wind direction is either from left or right
-# distance is either close or far.
-data = ["rabbit", "left", "close"]
-intro_text()
-print_slow("You open the gun safe and see your pistol and rifle.")
-select_weapon(data)
-travel_text(data)
-print_slow("Which way will you go?")
-select_trail(data)
+def play_game():
+    # Data to be generated randomly
+    # Animals are {rabbit, deer, bull moose, black bear}
+    # wind direction is either from left or right
+    # distance is either close or far.
+    data = ["rabbit", "left", "close"]
+    intro_text()
+    print_slow("You open the gun safe and see your pistol and rifle.")
+    select_weapon(data)
+    travel_text(data)
+    print_slow("Which way will you go?")
+    select_trail(data)
+
+play_game()
