@@ -1,4 +1,5 @@
 import time
+import random
 
 # Slow message printing for humans
 # str - String to be printed
@@ -55,23 +56,53 @@ def select_trail(data):
 
 def hunt(data):
     print_slow("\nYou walk down the trail a bit and see a clearing.")
+    print_range(data)
+    print_slow(f"You raise your {data[3]}, carefully aim, and squeeze the trigger.")
     if data[2] == "close":
-        print_slow(f"As you approach the clearing, you see a {data[0]} a few yards away!")
-        print_slow(f"You raise your {data[3]}, carefully aim, and squeeze the trigger.")
         if data[4] == "against_wind":
             print_slow(f"The {data[0]} drops to the ground. Success you have dinner!\n")
             select_again()
         elif data[4] == "with_wind":
-            print_slow(f"The {data[0]} catches your scent, and runs away!")
+            print_slow(f"The {data[0]} catches your scent, and runs away!\n")
             select_again()
+    elif data[2] == "far":
+        # Coin flip for pistol shot at a distance.
+        if data[4] == "against_wind" and data[3] == "pistol":
+            if random.randint(0,1) == 1:
+                print_slow(f"The {data[0]} drops to the ground. Success you have dinner!\n")
+                select_again()
+            else:
+                print_slow(f"The shot misses and startles the {data[0]}! It runs away.\n")
+                select_again()
+        elif data[4] == "against_wind" and data[3] != "pistol":
+            print_slow(f"The {data[0]} drops to the ground. Success you have dinner!\n")
+            select_again()
+        elif data[4] == "with_wind":
+            print_slow(f"The {data[0]} catches your scent, and runs away!\n")
+            select_again()
+
+def print_range(data):
+    if data[2] == "close":
+        prey_range = "a few"
+    else:
+        prey_range = "about 100"
+    print_slow(f"As you approach the clearing, you see a {data[0]} {prey_range} meters away!")
+
 
 
 def play_game():
-    # Data to be generated randomly
-    # Animals are {rabbit, deer, bull moose, black bear}
-    # wind direction is either from left or right
-    # distance is either close or far.
-    data = ["rabbit", "left", "close"]
+    # Data to be generated randomly:
+    #   data[0]: Animals are {'rabbit', 'deer', 'bull moose',
+    #                         'black bear'}
+    #   data[1]: Direction wind coming from is 'left' or 'right'
+    #   data[2]: Distance to prey is 'close' or 'far'.
+    # Data selected by player:
+    #   data[3]: Weapon is 'pistol' or 'rifle'
+    #   data[4]: Hunter to prey is 'against_wind' or 'with_wind'
+    data = [random.choice(["rabbit", "deer", "bull moose", 
+                           "black bear"]), 
+            random.choice(["left", "right"]), 
+            random.choice(["close", "far"])]
     intro_text()
     print_slow("You open the gun safe and see your pistol and rifle.")
     select_weapon(data)
