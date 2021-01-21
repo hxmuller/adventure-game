@@ -1,11 +1,13 @@
 import time
 import random
 
+
 # Slow message printing for humans
 # str - String to be printed
 def print_slow(str):
     print(str)
     time.sleep(1.5)
+
 
 # Print intro text
 def intro_text():
@@ -13,6 +15,7 @@ def intro_text():
     print_slow("You walk over to the freezer, open it and look "
                "in.")
     print_slow("The freezer is empty, time to hunt!\n")
+
 
 # Player selects weapon
 def select_weapon(data):
@@ -26,16 +29,18 @@ def select_weapon(data):
     else:
         select_weapon(data)
 
+
 # Print travel text
 def travel_text(data):
     print_slow(f"\nYou jump in your car and put the {data[3]} "
-                "on the seat.")
+               "on the seat.")
     print_slow("Soon you are at the trail head and you park.")
     print_slow("You walk down the trail and come to a fork.")
     print_slow("The trail splits and goes hard left and hard "
                "right.")
     print_slow(f"You feel the wind on the {data[1]} side of your "
-                "face.\n")
+               "face.\n")
+
 
 def select_trail(data):
     choice = input("Enter L to go left\n"
@@ -58,12 +63,13 @@ def select_trail(data):
     else:
         select_trail(data)
 
+
 def hunt(data):
     print_slow("\nYou walk down the trail a bit and see a "
                "clearing.")
     print_range(data)
     print_slow(f"You raise your {data[3]}, carefully aim, and "
-                "squeeze the trigger.")
+               "squeeze the trigger.")
     if data[2] == "close":
         if data[4] == "against_wind":
             success(data)
@@ -78,25 +84,29 @@ def hunt(data):
         elif data[4] == "with_wind":
             fail(data)
 
+
 def success(data):
     print_slow(f"The {data[0]} drops to the ground. "
-                "Success you have dinner!\n")
+               "Success you have dinner!\n")
     select_again()
+
 
 def fail(data):
     print_slow(f"The {data[0]} catches your scent, and "
-                "runs away!")
+               "runs away!")
     print_slow("Fail, no dinner tonight!\n")
     select_again()
 
+
 def far_pistol(data):
-    if random.randint(0,1) == 1:
+    if random.randint(0, 1) == 1:
         success(data)
     else:
         print_slow("The shot misses and startles the "
                    f"{data[0]}! It runs away.")
         print_slow("Fail, no dinner tonight!\n")
         select_again()
+
 
 def print_range(data):
     if data[2] == "close":
@@ -109,6 +119,7 @@ def print_range(data):
         print_slow("You will need a little luck at this range "
                    "with the pistol!")
 
+
 def play_game():
     # Data to be generated randomly:
     #   data[0]: Animals are {'rabbit', 'deer', 'bull moose',
@@ -118,9 +129,9 @@ def play_game():
     # Data selected by player:
     #   data[3]: Weapon is 'pistol' or 'rifle'
     #   data[4]: Hunter to prey is 'against_wind' or 'with_wind'
-    data = [random.choice(["rabbit", "deer", "bull moose", 
-                           "black bear"]), 
-            random.choice(["left", "right"]), 
+    data = [random.choice(["rabbit", "deer", "bull moose",
+                           "black bear"]),
+            random.choice(["left", "right"]),
             random.choice(["close", "far"])]
     intro_text()
     print_slow("You open the gun safe and see your pistol and "
@@ -130,14 +141,16 @@ def play_game():
     print_slow("Which way will you go?")
     select_trail(data)
 
+
 def select_again():
     choice = input("Would you like to play again? (y/n): "
-                  ).lower()
+                   ).lower()
     if choice == "y":
         play_game()
     elif choice == "n":
         print_slow("Thanks for playing!")
     else:
         select_again()
+
 
 play_game()
